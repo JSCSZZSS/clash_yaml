@@ -245,8 +245,9 @@ dns:
     - 119.29.29.29
     - 114.114.114.114
 
-pr: &pr {type: select, proxies: [ 🔯日本故转,🔯美国故转, 🇯🇵日本节点,🇺🇸美国节点, 🇭🇰香港节点,🇹🇼台湾节点, 🇸🇬新加坡节点,🇰🇷韩国节点,🌐全部节点,🌍小众地区,🧠自建,直连]}
-#♻️香港自动, ♻️新加坡自动, ♻️日本自动, ♻️美国自动, ♻️自动选择,🔯韩国故转,,🔯新加坡故转,🔯香港故转,🔯台湾故转,🔄中转
+pr: &pr {type: select, proxies: [ 🔯日本故转,🔯美国故转, 🇯🇵日本节点,🇺🇸美国节点, 🇭🇰香港节点,🇹🇼台湾节点, 🇸🇬新加坡节点,🇰🇷韩国节点,🌐全部节点,🌍小众地区,直连]}
+
+#♻️香港自动, ♻️新加坡自动, ♻️日本自动, ♻️美国自动, ♻️自动选择,🔯韩国故转,,🔯新加坡故转,🔯香港故转,🔯台湾故转,🔄中转,🧠自建
 proxy-groups:
 
   #常用
@@ -358,12 +359,12 @@ proxy-groups:
   #   interval: 1800
   #   filter: "(?=.*(中转))^((?!(直连|群组|以下|官网|订阅|流量|重置|套餐|到期|官方|地址)).)*"
 
-  - name: 🧠自建
-    type: url-test
-    include-all: true
-    tolerance: 20
-    interval: 1800
-    filter: "(?i)反代优选|方优选"
+  # - name: 🧠自建
+  #   type: url-test
+  #   include-all: true
+  #   tolerance: 20
+  #   interval: 1800
+  #   filter: "(?i)反代优选|方优选"
 
   - name: ❌无用
     type: select
@@ -409,22 +410,24 @@ rules:
 
   - RULE-SET,onedrive_domain,🚀默认代理
   - RULE-SET,microsoft_domain,🚀默认代理
-  - RULE-SET,netflix_domain,🚀默认代理
+  - RULE-SET,netflix_domain,🚀默认代理 
   - RULE-SET,paypal_domain,🚀默认代理
   # - RULE-SET,onedrive_domain,☁️OneDrive
   # - RULE-SET,microsoft_domain,💻Microsoft
-  # - RULE-SET,netflix_domain,🎥NETFLIX
+  ##注释为啥不好用
   # - RULE-SET,paypal_domain,💶PayPal
 
   - RULE-SET,apple_ip,直连,no-resolve
-  - RULE-SET,google_ip,🇬Google,no-resolve
-  - RULE-SET,netflix_ip,🎥NETFLIX,no-resolve
+  - RULE-SET,google_ip,🇬Google,no-resolve 
+
+  - RULE-SET,netflix_ip,🚀默认代理,no-resolve #我不明白
+
   - RULE-SET,telegram_ip,✈️Telegram,no-resolve
   - RULE-SET,geolocation-!cn,🚀默认代理
   - RULE-SET,cn_domain,直连
   - RULE-SET,cn_ip,直连
   - MATCH,🐟漏网之鱼
-
+ 
 # 规则集
 rule-anchor:
   ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
